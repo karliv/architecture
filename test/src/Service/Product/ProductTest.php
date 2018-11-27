@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Test\Service;
+namespace Test\Service\Product;
 
 use Model\Entity\Product as ProductEntity;
 use Model\Repository\Product as ProductRepository;
@@ -35,7 +35,7 @@ class ProductTest extends TestCase
         $productService->method('getProductRepository')
             ->willReturn($productRepository);
 
-        $product = $productService->getOne(10);
+        $product = $productService->getInfo(10);
 
         $this->assertEquals(current($productEntities), $product);
     }

@@ -5,12 +5,15 @@ declare(strict_types = 1);
 namespace Framework;
 
 use Service\User\Security;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 trait Render
 {
     /**
+     * Отрисовка страницы
+     *
      * @param string $view
      * @param array $parameters
      * @return Response
@@ -50,5 +53,18 @@ trait Render
         include_once $viewPath;
 
         return new Response(ob_get_clean());
+    }
+
+    /**
+     * Перенаправление на другую страницу
+     *
+     * @param string $name
+     *
+     * @return RedirectResponse
+     */
+    private function redirect(string $name): RedirectResponse
+    {
+        $route = Registry::getRoute($name);
+        return new RedirectResponse($route);
     }
 }

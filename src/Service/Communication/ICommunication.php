@@ -13,12 +13,12 @@ interface ICommunication
      * Точка входа по формированию и отправке сообщения пользователю
      *
      * @param Model\Entity\User $user
-     * @param int $templateId
+     * @param string $templateName
      * @param array $params
      *
      * @return void
      *
      * @throws CommunicationException
      */
-    public function process(Model\Entity\User $user, int $templateId, array $params = []): void;
+    public function process(Model\Entity\User $user, string $templateName, array $params = []): void;
 }

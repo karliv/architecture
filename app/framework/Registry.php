@@ -48,8 +48,6 @@ class Registry
      * @param string name
      * @param array $parameters
      * @return string
-     *
-     * @throws \Exception
      */
     public static function getRoute(string $name, array $parameters = []): string
     {
@@ -59,7 +57,7 @@ class Registry
         $urlGenerator = new UrlGenerator($routeCollection, new RequestContext());
         try {
             return $urlGenerator->generate($name, $parameters);
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
             throw new \InvalidArgumentException('Unknown route name ' . $name);
         }
     }

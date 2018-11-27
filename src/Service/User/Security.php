@@ -7,7 +7,7 @@ namespace Service\User;
 use Model;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-class Security
+class Security implements ISecurity
 {
     private const SESSION_USER_IDENTITY = 'userId';
 
@@ -22,9 +22,7 @@ class Security
     }
 
     /**
-     * Получаем сущность пользователя по сессии
-     *
-     * @return Model\Entity\User|null
+     * @inheritdoc
      */
     public function getUser(): ?Model\Entity\User
     {
@@ -34,9 +32,7 @@ class Security
     }
 
     /**
-     * Проверяет, является ли пользователь авторизованным
-     *
-     * @return bool
+     * @inheritdoc
      */
     public function isLogged(): bool
     {
@@ -44,11 +40,7 @@ class Security
     }
 
     /**
-     * Производим операцию аутентификации
-     *
-     * @param string $login
-     * @param string $password
-     * @return bool
+     * @inheritdoc
      */
     public function authentication(string $login, string $password): bool
     {
@@ -64,17 +56,19 @@ class Security
 
         $this->session->set(self::SESSION_USER_IDENTITY, $user->getId());
 
+        // Здесь могут выполняться другие действия связанные с аутентификацией пользователя
+
         return true;
     }
 
     /**
-     * Выход из системы
-     *
-     * @return void
+     * @inheritdoc
      */
     public function logout(): void
     {
         $this->session->set(self::SESSION_USER_IDENTITY, null);
+
+        // Здесь могут выполняться другие действия связанные с разлогиниванием пользователя
     }
 
     /**

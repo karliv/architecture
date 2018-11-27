@@ -26,7 +26,7 @@ class PromoCode implements IDiscount
     {
         // Получаем по промокоду размер скидки на заказ в процентах
         // $discount = $this->find($this->promoCode)->discount();
-        $discount = 15.50;
+        $discount = 5.50;
 
         // Запрос в систему хранения промокодов для пометки кода как использованный
         // $this->find($this->promoCode)->deactivate();

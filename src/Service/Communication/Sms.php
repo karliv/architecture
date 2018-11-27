@@ -11,7 +11,7 @@ class Sms implements ICommunication
     /**
      * @inheritdoc
      */
-    public function process(Model\Entity\User $user, int $templateId, array $params = []): void
+    public function process(Model\Entity\User $user, string $templateName, array $params = []): void
     {
         // Вызываем метод по формированию смс текста и последующего его отправления
     }

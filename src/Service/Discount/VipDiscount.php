@@ -26,7 +26,7 @@ class VipDiscount implements IDiscount
      */
     public function getDiscount(): float
     {
-        // Получаем индивидуальную скидку золотого пользователя
+        // Получаем индивидуальную скидку VIP пользователя
         // $discount = $this->find($this->user)->discount();
         $discount = 20;
 

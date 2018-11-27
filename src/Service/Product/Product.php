@@ -9,26 +9,20 @@ use Model;
 class Product
 {
     /**
-     * Получаем конкретный продукт
+     * @var float
+     */
+    private $price;
+
+    /**
+     * Получаем информацию по конкретному продукту
      *
      * @param int $id
      * @return Model\Entity\Product|null
      */
-    public function getOne(int $id): ?Model\Entity\Product
+    public function getInfo(int $id): ?Model\Entity\Product
     {
         $product = $this->getProductRepository()->search([$id]);
         return count($product) ? $product[0] : null;
-    }
-
-    /**
-     * Получаем коллекцию продуктов
-     *
-     * @param int[] $ids
-     * @return Model\Entity\Product[]
-     */
-    public function getCollection(array $ids): array
-    {
-        return $this->getProductRepository()->search($ids);
     }
 
     /**
@@ -39,6 +33,14 @@ class Product
     public function getAll(): array
     {
         return $this->getProductRepository()->fetchAll();
+    }
+
+    /**
+     * @return float
+     */
+    public function getPrice(): float
+    {
+        return $this->price;
     }
 
     /**

@@ -11,7 +11,7 @@ class Email implements ICommunication
     /**
      * @inheritdoc
      */
-    public function process(Model\Entity\User $user, int $templateId, array $params = []): void
+    public function process(Model\Entity\User $user, string $templateName, array $params = []): void
     {
         // Вызываем метод по формированию тела письма и последующего его отправления
     }

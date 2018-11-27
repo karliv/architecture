@@ -1,7 +1,9 @@
 <?php
 
 /** @var \Model\Entity\Product[] $productList */
-$body = function () use ($productList) {
+/** @var bool $isLogged */
+/** @var \Closure $path */
+$body = function () use ($productList, $isLogged, $path) {
     ?>
     <form method="post">
         <table cellpadding="10">
@@ -25,9 +27,24 @@ $body = function () use ($productList) {
             <tr>
                 <td colspan="3" align="right">Итого: <?= $totalPrice ?> рублей</td>
             </tr>
+<?php if ($totalPrice > 0) {
+        if ($isLogged) {
+            ?>
+            <tr>
+                <td colspan="3" align="center"><input type="submit" value="Оформить заказ" /></td>
+            </tr>
+<?php
+        } else {
+            ?>
+            <tr>
+                <td colspan="4" align="center">Для оформления заказа, <a href="<?= $path('user_authentication') ?>">авторизуйтесь</a></td>
+            </tr>
+<?php
+        }
+    } ?>
         </table>
     </form>
-    <?php
+<?php
 };
 
 $renderLayout(

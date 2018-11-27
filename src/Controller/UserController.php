@@ -14,7 +14,7 @@ class UserController
     use Render;
 
     /**
-     * Производим аутентификацию
+     * Производим аутентификацию и авторизацию
      *
      * @param Request $request
      * @return Response
@@ -40,7 +40,7 @@ class UserController
     }
 
     /**
-     * Разовторизуемся
+     * Выходим из системы
      *
      * @param Request $request
      * @return Response
@@ -49,6 +49,6 @@ class UserController
     {
         (new Security($request->getSession()))->logout();
 
-        return $this->render('main/index.html.php');
+        return $this->redirect('index');
     }
 }

@@ -4,19 +4,13 @@ namespace Framework\Commands;
 
 
 use Framework\ICommand;
-use Framework\Receivers\ReceiverRoutes;
 
 class CommandRoutes implements ICommand
 {
-    private $receiver;
-    public function __construct(ReceiverRoutes $receiver)
+    public function execute(CommandArgs $args = null)
     {
-        $this->receiver = $receiver;
+        $args->routeCollection = require $args->dir . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'routing.php';
+        $args->containerBuilder->set('route_collection', $args->routeCollection);
+        return $args;
     }
-
-    public function execute()
-    {
-        $this->receiver->registerRoutes();
-    }
-
 }

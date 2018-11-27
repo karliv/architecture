@@ -23,8 +23,12 @@ $routes->add(
 );
 
 $routes->add(
-    'info',
+    'order_info',
     new Route('/order/info', ['_controller' => [OrderController::class, 'infoAction']])
+);
+$routes->add(
+    'order_checkout',
+    new Route('/order/checkout', ['_controller' => [OrderController::class, 'checkoutAction']])
 );
 
 $routes->add(
