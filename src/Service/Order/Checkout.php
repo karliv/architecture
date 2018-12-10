@@ -53,7 +53,7 @@ class Checkout
         }
 
         $discount = $this->discount->getDiscount();
-        $totalPrice = $totalPrice -$totalPrice / 100 * $discount;
+        $totalPrice = $totalPrice - $totalPrice / 100 * $discount;
 
         $this->billing->pay($totalPrice);
 

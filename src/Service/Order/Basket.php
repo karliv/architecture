@@ -6,12 +6,8 @@ namespace Service\Order;
 
 use Model;
 use Service\Billing\Card;
-use Service\Billing\IBilling;
 use Service\Communication\Email;
-use Service\Communication\ICommunication;
-use Service\Discount\IDiscount;
 use Service\Discount\NullObject;
-use Service\User\ISecurity;
 use Service\User\Security;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -72,24 +68,6 @@ class Basket
     {
         $productIds = $this->getProductIds();
         return $this->getProductRepository()->search($productIds);
-    }
-
-    /**
-     * Оформление заказа
-     *
-     * @return void
-     */
-    public function checkout(): void
-    {
-        $basketBuilder = (new BasketBuilder())
-            ->setBilling(new Card())
-            ->setDiscount(new NullObject())
-            ->setCommunication(new Email())
-            ->setSecrurity(new Security($this->session))
-            ->setProducts($this->getProductsInfo());
-
-        $builder = $basketBuilder->build();
-        $builder->checkoutProcess();
     }
 
     /**
